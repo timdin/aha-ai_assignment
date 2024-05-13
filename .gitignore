@@ -1,0 +1,5 @@
+# for python virtual environment
+.venv
+# for execution reports
+*.html
+*.xml
