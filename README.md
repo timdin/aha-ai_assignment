@@ -30,7 +30,13 @@ I'm using robotframeworks to finish the assignment.
     robot --version
     ```
 
-6. Run all the testcases
+6. Set up path for robot execution
+
+    ```shell
+    export ROBOTPATH=${PWD}
+    ```
+
+7. Run all the testcases
 
     ```shell
     robot testcases
