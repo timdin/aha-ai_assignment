@@ -13,6 +13,15 @@ Login with Email
     Click element  xpath://button[@type="submit"]
     Wait until element is visible  xpath://div[@class="em-button-base" and text()="Create Club"]
     
+Login with Email invalid case
+    Wait until element is visible  xpath://div[@class="em-button-base" and text()="Login"]
+    Click element  xpath://div[@class="em-button-base" and text()="Login"]
+    Wait until element is visible  xpath://input[@id="username"]
+    Input text  xpath://input[@id="username"]  tim743244+1@gmail.com
+    Input text  xpath://input[@id="password"]  invalid password
+    Click element  xpath://button[@type="submit"]
+    Wait until element is visible  xpath://span[@id="error-element-password"]
+
 Login with Google account
     Wait until element is visible  xpath://div[@class="em-button-base" and text()="Login"]
     Click element  xpath://div[@class="em-button-base" and text()="Login"]
