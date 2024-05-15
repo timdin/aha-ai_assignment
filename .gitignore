@@ -3,3 +3,5 @@
 # for execution reports
 *.html
 *.xml
+*.log
+*.png
