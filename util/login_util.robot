@@ -12,6 +12,7 @@ User Login with Email and Password
     User should be logged in
 
 User Login with Google
+    [Documentation]    Use hard coded username and password for google account login
     The Login button is visible
     User Click the Login button
     Google auth button should be visible

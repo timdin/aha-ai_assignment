@@ -1,7 +1,8 @@
 *** Settings ***
 Library    SeleniumLibrary
-Resource   %{ROBOTPATH}/util/login_util.robot
-Resource    ../sentences/logout_page.robot
+Resource    %{ROBOTPATH}/util/login_util.robot
+Resource    %{ROBOTPATH}/sentences/logout_page.robot
+Resource    %{ROBOTPATH}/sentences/profile_page.robot
 Test Tags  Logout
 Test Setup    Open Browser    url=https://app.earnaha.com/    browser=chrome
 Test Teardown    Close Browser

@@ -1,7 +1,12 @@
 # for python virtual environment
 .venv
+# for pycache
+__pycache__
+
 # for execution reports
 *.html
 *.xml
 *.log
 *.png
+# for experimental files
+test.robot
