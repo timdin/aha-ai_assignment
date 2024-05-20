@@ -1,11 +1,12 @@
 *** Settings ***
 Library    SeleniumLibrary
+Resource   %{ROBOTPATH}/consts/lang_en.robot
 *** Keywords ***
 The Login button is visible
-    Wait until element is visible  xpath://div[@class="em-button-base" and text()="Login"]
+    Wait until element is visible  xpath://div[@class="em-button-base" and text()=${LOGIN}]
 
 User Click the Login button
-    Click element  xpath://div[@class="em-button-base" and text()="Login"]
+    Click element  xpath://div[@class="em-button-base" and text()=${LOGIN}]
 
 The Email field should be visible
     Wait until element is visible  xpath://input[@id="username"]
@@ -22,7 +23,7 @@ User Click submit button on login page
     Click element  xpath://button[@type="submit"]
 
 User should be logged in
-    Wait until element is visible  xpath://div[@class="em-button-base" and text()="Create Club"]
+    Wait until element is visible  xpath://div[@class="em-button-base" and text()=${CREATE CLUB}]
 
 Error message for login should be visible
     Wait until element is visible  xpath://span[@id="error-element-password"]

@@ -1,14 +1,15 @@
 *** Settings ***
 Library    SeleniumLibrary    timeout=10
 Library    %{ROBOTPATH}/lib/date_helper.py
+Resource   %{ROBOTPATH}/consts/lang_en.robot
 *** Keywords ***
 User Goto profile page
     [Documentation]    Use directly url access as there is a potential bug where the user could not access the profile through the sidebar when the user has not joined any club
     Go to    https://app.earnaha.com/profile/account
 
 User click edit on profile page
-    Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()="Edit Profile"]
-    Click Element   xpath://div[@class="em-button-base" and text()="Edit Profile"]
+    Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()=${EDIT PROFILE}]
+    Click Element   xpath://div[@class="em-button-base" and text()=${EDIT PROFILE}]
 
 User select a date of birth for current test
     Get a date
@@ -39,17 +40,17 @@ User set the selected date on the calendar
     # select date
     # since it's possible that the same date has 2 appearance, select the one with the correct weekday
     ${date}    ${weekday}=    Get Day Of Date
-    Click Element    xpath://div/div[${weekday}]/div/button[text()="${date}"]
+    Click Element    xpath://div/div[${weekday}]/div/button[text()=${date}]
     # click ok button
-    Click Element    xpath://button[@type="button" and text()="OK"]
+    Click Element    xpath://button[@type="button" and text()=${OK}]
 
 User click save on profile page
-    Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()="Save"]
-    Click Element   xpath://div[@class="em-button-base" and text()="Save"]
+    Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()=${SAVE}]
+    Click Element   xpath://div[@class="em-button-base" and text()=${SAVE}]
 
 User should be on profile page
     # wait for the edit profile button as the indication for page loaded
-    Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()="Edit Profile"]
+    Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()=${EDIT PROFILE}]
     Location Should Be    https://app.earnaha.com/profile/account
 
 User Birthday should be identical as set previously
