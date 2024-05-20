@@ -7,7 +7,7 @@ Test Setup    Open Browser    url=https://app.earnaha.com/    browser=chrome
 Test Teardown    Close Browser
 *** Test Cases ***
 User should be able to set the date of birth
-    When User Login with Email and Password    tim743244+1@gmail.com    apple banana123
+    When User Login with Email and Password
     And User Goto profile page
     And User click edit on profile page
     And User select a date of birth for current test
@@ -19,7 +19,7 @@ User should be able to set the date of birth
 
 
 User should be able to set the date of birth (leap date)
-    When User Login with Email and Password    tim743244+1@gmail.com    apple banana123
+    When User Login with Email and Password
     And User Goto profile page
     And User click edit on profile page
     And User select a leap date of birth for current test

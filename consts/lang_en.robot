@@ -4,7 +4,7 @@
 ${LOGIN} =    "Login"
 ${CREATE CLUB}=    "Create Club"
 ${LOGOUT} =    "Log out"
-${YES} =    "Yes"
+${LOGOUT YES} =    "Log Out"
 ${EDIT PROFILE} =    "Edit Profile"
 ${OK} =    "OK"
 ${SAVE} =    "Save"
