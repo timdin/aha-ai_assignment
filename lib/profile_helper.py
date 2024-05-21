@@ -1,6 +1,8 @@
 """
 This is a custom lib for profile page testing related to data generation, comparing and storing
 """
+import random
+import string
 from typing import Any
 
 class profile_helper: # pylint: disable=C0103
@@ -20,18 +22,30 @@ class profile_helper: # pylint: disable=C0103
         """
         if key in self.storage:
             return self.storage[key]
-        raise KeyError("Could not find value for key {key}")
-    def compare(self, key:str, actual:Any) -> None:
+        raise KeyError(f"Could not find value for key {key}")
+    def compare_value(self, key:str, actual:Any) -> None:
         """
         This method compares the data from input and storage with the given key
         """
         expected = self.get_value(key)
         if expected != actual:
-            raise AssertionError("""Value at key `{key}` is not equal\n
-                                 expected: {expected}\n
-                                 actual: {actual}""")
+            raise AssertionError(f"""Value at key `{key}` is not equal\n
+                                 expected: {type(expected)}: {expected}\n
+                                 actual: {type(actual)}: {actual}""")
     def set_value(self, key:str, value:Any) -> None:
         """
         This method set the data with given key in the object stoage
         """
         self.storage[key] = value
+    def random_a_string(self) -> str:
+        """
+        This method randomly generate a string
+        """
+        return ''.join(
+            random.choices(string.ascii_lowercase + string.digits, k = random.randrange(8, 20))
+            )
+    def random_a_number(self, range_low: int, range_high: int) -> int:
+        """
+        This method randomly choose a number within the given range
+        """
+        return random.randrange(range_low, range_high)
