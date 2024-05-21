@@ -1,4 +1,5 @@
 *** Settings ***
+Library    SeleniumLibrary
 Resource   %{ROBOTPATH}/sentences/login_page.robot
 Resource   %{ROBOTPATH}/consts/account.robot
 *** Keywords ***
@@ -19,3 +20,7 @@ User Login with Google
     User Click Google auth
     Finish login to Google account
     User should be logged in
+
+User open homepage and login with email
+    Open Browser    url=https://app.earnaha.com/    browser=chrome
+    User Login with Email and Password
