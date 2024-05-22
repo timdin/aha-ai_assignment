@@ -1,12 +1,14 @@
 # since the test cases uses a lot of locators based on texts or placeholders, refactor and add a variable file to better manage
 # these hard-coded values
 *** Variables ***
-# following variables are used in login and logout page
+# following variables are used in login, logout and sign up page
 ${LOGIN} =    "Login"
 ${CREATE CLUB}=    "Create Club"
 ${LOGOUT} =    "Log out"
 ${LOGOUT YES} =    "Log Out"
 ${OK} =    "OK"
+${SIGN UP} =    "Sign up"
+${RESEND EMAIL} =    "Resend Email"
 
 # following variables are used in profile page
 # for profile page
