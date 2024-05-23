@@ -1,6 +1,10 @@
 name: Aha-assignment-timpei
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: [push]
+on:
+  push:
+  schedule:
+    # timezone of the github action runner is UTC+0, setting to 1AM will equal to 9AM in UTC+8
+    - cron: '0 1 * * *'
 jobs:
   Testing:
     runs-on: ubuntu-latest
