@@ -5,6 +5,8 @@ jobs:
   Prepare-environment:
     runs-on: ubuntu-latest
     container: timdin/rf-selenium-image:latest
+    outputs:
+      cache-key: ${{ steps.cache-keys.outputs.key }}
     env: 
       ROBOTPATH: ${{ github.workspace }}
     steps:
