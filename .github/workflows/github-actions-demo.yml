@@ -7,6 +7,7 @@ jobs:
     container: timdin/rf-selenium-image:latest
     outputs:
       cache-key: ${{ steps.cache-keys.outputs.key }}
+      cache-path: ${{ steps.pip-cache.outputs.dir }}
     env: 
       ROBOTPATH: ${{ github.workspace }}
     steps:
