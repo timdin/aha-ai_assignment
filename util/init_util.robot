@@ -9,4 +9,5 @@ Init browser
     ELSE    
         Open Browser    url=https://app.earnaha.com/    browser=chrome
     END
+    Set Selenium Timeout    30
     
