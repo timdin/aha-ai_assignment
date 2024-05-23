@@ -8,15 +8,46 @@ jobs:
     env: 
       ROBOTPATH: ${{ github.workspace }}
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       # since the ${{ github.workspace }} somehow didn't work properly, use the previously assigned project root variable instead
-      - run: mkdir ${ROBOTPATH}/credentials
-      - run: echo ${{ secrets.CREDENTIALS }} > ${ROBOTPATH}/credentials/credentials.json
-      - run: echo ${{ secrets.TOKEN }} > ${ROBOTPATH}/credentials/token.json
-      - run: pip install -r ${ROBOTPATH}/requirements.txt
+      - name: Get pip cache dir
+        id: pip-cache
+        run: echo "::set-output name=dir::$(pip cache dir)"
+      - name: Cache pip
+        uses: actions/cache@v2
+        id: cache-keys
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ${ROBOTPATH}/requirements.txt
       - run: pip list
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  Testing:
+    needs: Prepare-environment
+    container: timdin/rf-selenium-image:latest
+    runs-on: ubuntu-latest
+    env: 
+      ROBOTPATH: ${{ github.workspace }}
+    steps:
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ${{ needs.setup.outputs.cache-key }}
+          key: ${{ needs.setup.outputs.cache-key }}
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r ${ROBOTPATH}/requirements.txt
+      - name: Export credentials
+        run: | 
+          mkdir ${ROBOTPATH}/credentials
+          echo ${{ secrets.CREDENTIALS }} > ${ROBOTPATH}/credentials/credentials.json
+          echo ${{ secrets.TOKEN }} > ${ROBOTPATH}/credentials/token.json
