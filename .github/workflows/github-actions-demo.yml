@@ -1,9 +1,7 @@
 name: Aha-assignment-timpei
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: 
-  push:
-  schedule:
-    - cron
+  push
 jobs:
   Testing:
     runs-on: ubuntu-latest
