@@ -20,8 +20,6 @@ jobs:
           mkdir ${ROBOTPATH}/credentials
           echo ${{ secrets.CREDENTIALS }} > ${ROBOTPATH}/credentials/credentials.json
           echo ${{ secrets.TOKEN }} > ${ROBOTPATH}/credentials/token.json
-      - name: Export result path
-        run: export ${result}=${ROBOTPATH}/results
       - name: Run tests
         run: robot --variable mode:headless -i Login --outputdir ~/results ${ROBOTPATH}/testcases
         continue-on-error: true
