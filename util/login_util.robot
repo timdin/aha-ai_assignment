@@ -2,6 +2,7 @@
 Library    SeleniumLibrary
 Resource   %{ROBOTPATH}/sentences/login_page.robot
 Resource   %{ROBOTPATH}/consts/account.robot
+Resource   %{ROBOTPATH}/util/init_util.robot
 *** Keywords ***
 User Login with Email and Password
     The Login button is visible
@@ -22,5 +23,5 @@ User Login with Google
     User should be logged in
 
 User open homepage and login with email
-    Open Browser    url=https://app.earnaha.com/    browser=chrome
+    Init browser
     User Login with Email and Password

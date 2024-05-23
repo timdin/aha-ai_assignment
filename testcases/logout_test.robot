@@ -3,8 +3,9 @@ Library    SeleniumLibrary
 Resource    %{ROBOTPATH}/util/login_util.robot
 Resource    %{ROBOTPATH}/sentences/logout_page.robot
 Resource    %{ROBOTPATH}/sentences/profile_page.robot
+Resource   %{ROBOTPATH}/util/init_util.robot
 Test Tags  Logout
-Test Setup    Open Browser    url=https://app.earnaha.com/    browser=chrome
+Test Setup    Init browser
 Test Teardown    Close Browser
 *** Test Cases ***
 User should be able to logout when logged in with email and password

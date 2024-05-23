@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 Resource   %{ROBOTPATH}/sentences/signup_page.robot
 Resource   %{ROBOTPATH}/sentences/login_page.robot
 Test Tags  Sign up
-Test Setup  Open Browser    url=https://app.earnaha.com/    browser=chrome
+Test Setup  Init browser
 Test Teardown  Close Browser
 
 *** Test Cases ***

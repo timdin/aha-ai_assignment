@@ -43,3 +43,9 @@ I'm using robotframeworks to finish the assignment.
     ```
 
     And you should be able to see the result htmls.
+
+8. Headless mode is also supported
+
+    ```shell
+    robot --variable mode:headless testcases
+    ```

@@ -2,8 +2,9 @@
 Library    SeleniumLibrary
 Resource   %{ROBOTPATH}/sentences/login_page.robot
 Resource   %{ROBOTPATH}/consts/account.robot
+Resource   %{ROBOTPATH}/util/init_util.robot
 Test Tags  Login
-Test Setup  Open Browser    url=https://app.earnaha.com/    browser=chrome
+Test Setup  Init browser
 Test Teardown  Close Browser
 *** Test Cases ***
 User shoule be able to Login with Email and Password
