@@ -11,6 +11,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       # since the ${{ github.workspace }} somehow didn't work properly, use the previously assigned project root variable instead
+      # unfortunately, this is an active bug so I'll try out some goofy workaround
       - name: Install requirements
         run: pip install -r ${ROBOTPATH}/requirements.txt
       - name: Export credentials
@@ -18,6 +19,8 @@ jobs:
           mkdir ${ROBOTPATH}/credentials
           echo ${{ secrets.CREDENTIALS }} > ${ROBOTPATH}/credentials/credentials.json
           echo ${{ secrets.TOKEN }} > ${ROBOTPATH}/credentials/token.json
+      - name: Export result path
+        run: export ${result}=${ROBOTPATH}/results
       - name: Run tests
         run: robot --variable mode:headless -i Login --outputdir ${ROBOTPATH}/results ${ROBOTPATH}/testcases
         continue-on-error: true
@@ -25,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-results
-          path: ${ROBOTPATH}/results
+          path: ${result}
