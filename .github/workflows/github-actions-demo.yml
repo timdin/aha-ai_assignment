@@ -18,6 +18,5 @@ jobs:
       - run: echo ${{ secrets.CREDENTIALS }} > ${ROBOTPATH}/credentials/credentials.json
       - run: echo ${{ secrets.TOKEN }} > ${ROBOTPATH}/credentials/token.json
       - run: pip install -r ${ROBOTPATH}/requirements.txt
-      - run: robot --version
       - run: pip list
       - run: echo "🍏 This job's status is ${{ job.status }}."
