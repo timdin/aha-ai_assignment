@@ -1,18 +1,30 @@
-name: GitHub Actions Demo
+name: Aha-assignment-timpei
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Testing:
     runs-on: ubuntu-latest
+    container: timdin/rf-selenium-image:latest
+    env: 
+      ROBOTPATH: ${{ github.workspace }}
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      # since the ${{ github.workspace }} somehow didn't work properly, use the previously assigned project root variable instead
+      # unfortunately, this is an active bug so I'll try out some goofy workaround
+      # see https://github.com/actions/checkout/issues/785
+      - name: Install requirements
+        run: pip install -r ${ROBOTPATH}/requirements.txt
+      - name: Export credentials
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          mkdir ${ROBOTPATH}/credentials
+          echo ${{ secrets.CREDENTIALS }} > ${ROBOTPATH}/credentials/credentials.json
+          echo ${{ secrets.TOKEN }} > ${ROBOTPATH}/credentials/token.json
+      - name: Run tests
+        run: robot --variable mode:headless -i Login --outputdir ~/results ${ROBOTPATH}/testcases
+        continue-on-error: true
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ~/results
