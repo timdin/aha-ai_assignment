@@ -4,7 +4,7 @@ on: [push]
 jobs:
   Prepare-environment:
     runs-on: ubuntu-latest
-    container: yourusername/custom-python-image:latest
+    container: timdin/rf-selenium-image:latest
     env: 
       ROBOTPATH: ${{ github.workspace }}
     steps:
@@ -17,4 +17,6 @@ jobs:
       - run: echo ${{ secrets.CREDENTIALS }} > ${{ github.workspace }}/credentials/credentials.json
       - run: echo ${{ secrets.TOKEN }} > ${{ github.workspace }}/credentials/token.json
       - run: pip install -r ${{ github.workspace }}/requirements.txt
+      - run: robot --version
+      - run: pip list
       - run: echo "🍏 This job's status is ${{ job.status }}."
