@@ -14,6 +14,7 @@ jobs:
     env: 
       ROBOTPATH: ${{ github.workspace }}
       PYTHONPATH: ${{ github.workspace }}
+      SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -30,7 +31,6 @@ jobs:
           mkdir ${ROBOTPATH}/credentials
           echo ${{ secrets.CREDENTIALS }} > ${ROBOTPATH}/credentials/credentials.json
           echo ${{ secrets.TOKEN }} > ${ROBOTPATH}/credentials/token.json
-          export SLACK_TOKEN=${{ secrets.SLACK_TOKEN }}
       - name: Run tests
         run: robot --variable mode:headless -i Login --outputdir ~/results ${ROBOTPATH}/testcases
         continue-on-error: true
