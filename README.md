@@ -30,10 +30,14 @@ I'm using robotframeworks to finish the assignment.
     robot --version
     ```
 
-6. Set up path for robot execution
+6. Set up path for robot execution and python path
+
+    The robot path is mandatory, but the python path is optional as it was only for the reporter module
 
     ```shell
     export ROBOTPATH=${PWD}
+    # optional
+    export PYTHONPATH=$PYTHONPATH:${PWD}
     ```
 
 7. Run all the testcases

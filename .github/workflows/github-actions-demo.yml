@@ -13,6 +13,8 @@ jobs:
     container: timdin/rf-selenium-image:latest
     env: 
       ROBOTPATH: ${{ github.workspace }}
+      PYTHONPATH: ${{ github.workspace }}
+      SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
@@ -20,7 +22,10 @@ jobs:
       # unfortunately, this is an active bug so I'll try out some goofy workaround
       # see https://github.com/actions/checkout/issues/785
       - name: Install requirements
-        run: pip install -r ${ROBOTPATH}/requirements.txt
+        run: |
+          pip install -r ${ROBOTPATH}/requirements.txt
+      - name: python env
+        run: python3 --version
       - name: Export credentials
         run: |
           mkdir ${ROBOTPATH}/credentials
@@ -34,3 +39,6 @@ jobs:
         with:
           name: test-results
           path: ~/results
+      - name: reporting
+        run: |
+          python3 ${ROBOTPATH}/reporter/reporter.py ~/results ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
