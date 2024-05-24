@@ -4,6 +4,8 @@ on:
   push:
   schedule:
     # timezone of the github action runner is UTC+0, setting to 1AM will equal to 9AM in UTC+8
+    # There could have a delay of the execution, but the official support of
+    # timezone on cron schedule was still an active discussion here https://github.com/orgs/community/discussions/13454
     - cron: '0 1 * * *'
 jobs:
   Testing:
