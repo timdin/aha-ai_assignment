@@ -13,6 +13,7 @@ jobs:
     container: timdin/rf-selenium-image:latest
     env: 
       ROBOTPATH: ${{ github.workspace }}
+      PYTHONPATH: ${{ github.workspace }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
