@@ -21,10 +21,9 @@ jobs:
       # see https://github.com/actions/checkout/issues/785
       - name: Install requirements
         run: |
-          apt install python
           pip install -r ${ROBOTPATH}/requirements.txt
       - name: python env
-        run: python --version
+        run: python3 --version
       - name: Export credentials
         run: |
           mkdir ${ROBOTPATH}/credentials
@@ -39,4 +38,4 @@ jobs:
           name: test-results
           path: ~/results
       - name: reporting
-        run: python ${ROBOTPATH}/reporter/reporter.py ~/results ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python3 ${ROBOTPATH}/reporter/reporter.py ~/results ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
