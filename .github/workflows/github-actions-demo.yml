@@ -20,7 +20,9 @@ jobs:
       # unfortunately, this is an active bug so I'll try out some goofy workaround
       # see https://github.com/actions/checkout/issues/785
       - name: Install requirements
-        run: pip install -r ${ROBOTPATH}/requirements.txt
+        run: |
+          apt install python
+          pip install -r ${ROBOTPATH}/requirements.txt
       - name: python env
         run: python --version
       - name: Export credentials
