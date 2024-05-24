@@ -34,3 +34,5 @@ jobs:
         with:
           name: test-results
           path: ~/results
+      - name: reporting
+        run: python ${ROBOTPATH}/reporter/reporter.py ~/results ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
