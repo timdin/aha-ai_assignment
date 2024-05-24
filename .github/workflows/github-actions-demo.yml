@@ -41,5 +41,4 @@ jobs:
           path: ~/results
       - name: reporting
         run: |
-          echo ${SLACK_TOKEN}
           python3 ${ROBOTPATH}/reporter/reporter.py ~/results ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}

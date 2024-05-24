@@ -27,10 +27,10 @@ def parse_result(filepath:str) -> tuple[str, str, str]:
 if __name__ == '__main__':
     # receive the result xml from input variables
     if len(sys.argv) < 2:
-        raise ValueError("Wrong number of arguments, expected 2 argument of report path and run path")
+        raise ValueError("Wrong number of arguments, "
+                         "expected 2 argument of report path and run path")
     res = parse_result(os.path.join(sys.argv[1], "output.xml"))
     # ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
     # print(res)
     CHANNEL_ID = 'C044SMHP44D'
     send_slack_message(SLACK_TOKEN, CHANNEL_ID, res, sys.argv[2])
-
