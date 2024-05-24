@@ -21,6 +21,8 @@ jobs:
       # see https://github.com/actions/checkout/issues/785
       - name: Install requirements
         run: pip install -r ${ROBOTPATH}/requirements.txt
+      - name: python env
+        run: python --version
       - name: Export credentials
         run: |
           mkdir ${ROBOTPATH}/credentials
