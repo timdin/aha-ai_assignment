@@ -2,6 +2,7 @@
 Library    SeleniumLibrary
 Resource   %{ROBOTPATH}/sentences/signup_page.robot
 Resource   %{ROBOTPATH}/sentences/login_page.robot
+Resource   %{ROBOTPATH}/util/init_util.robot
 Test Tags  Sign up
 Test Setup  Init browser
 Test Teardown  Close Browser

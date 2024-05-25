@@ -48,4 +48,4 @@ class profile_helper: # pylint: disable=C0103
         """
         This method randomly choose a number within the given range
         """
-        return random.randrange(range_low, range_high)
+        return random.randint(range_low, range_high)

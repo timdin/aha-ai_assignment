@@ -2,7 +2,6 @@
 Library    SeleniumLibrary    timeout=10
 Library    %{ROBOTPATH}/lib/date_helper.py
 Library    %{ROBOTPATH}/lib/profile_helper.py
-Library    ../.venv/lib/python3.12/site-packages/robot/libraries/XML.py
 Resource   %{ROBOTPATH}/consts/lang_en.robot
 *** Variables ***
 # the available variables for placeholders are listed in the lang_en.robot
@@ -10,8 +9,8 @@ Resource   %{ROBOTPATH}/consts/lang_en.robot
 
 *** Keywords ***
 User Goto profile page
-    [Documentation]    Use directly url access as there is a potential bug where the user could not access the profile through the sidebar when the user has not joined any club
-    Go to    https://app.earnaha.com/profile/account
+    Wait Until Element Is Visible  xpath://div[@aria-label="Profile"]
+    Click Element   xpath://div[@aria-label="Profile"]
 
 User click edit on profile page
     Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()=${EDIT PROFILE}]
@@ -101,7 +100,8 @@ User set value on selection field "${field}"
     Click element    xpath://input[@placeholder=${placeholder}]
     # get all available elements from the dropdown selection field
     ${count} =    SeleniumLibrary.Get Element Count    xpath://li[@role="option"]
-    ${selection} =   Random A Number    ${0}    ${count}
+    # since the index for xpath of list items starts from 1, set the random range as follows
+    ${selection} =   Random A Number    ${1}    ${count}
     # store the value of the randomly picked element
     ${value} =    Get Text    xpath://ul/li[${selection}]
     Click Element    xpath://ul/li[${selection}]
