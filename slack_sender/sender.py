@@ -66,10 +66,4 @@ def send_slack_message(
         'Authorization': f'Bearer {slack_token}'
     }
 
-    response = requests.post(url, headers=headers, data=json.dumps(message_payload), timeout=5)
-
-    if response.status_code == 200 and response.json().get('ok'):
-        print('Message sent successfully!')
-    else:
-        print(f'Failed to send message: {response.status_code}')
-        print(response.text)
+    requests.post(url, headers=headers, data=json.dumps(message_payload), timeout=5)

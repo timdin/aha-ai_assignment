@@ -15,6 +15,7 @@ jobs:
       ROBOTPATH: ${{ github.workspace }}
       PYTHONPATH: ${{ github.workspace }}
       SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+      ELASTIC_EMAIL_API_KEY: ${{ secrets.EMAIL_TOKEN}}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4

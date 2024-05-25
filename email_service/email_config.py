@@ -1,3 +1,6 @@
+"""
+This module gets the API key from environment and defines the email sender address
+"""
 import os
 
 # Store your Elastic Email API credentials securely

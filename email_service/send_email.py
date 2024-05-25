@@ -1,15 +1,22 @@
+"""
+This module implements a simple wrapper for making the request of sending email
+"""
+from email_service.email_config import ELASTIC_EMAIL_API_KEY, FROM_EMAIL
+
 import requests
 
-def send_elastic_email(api_key, from_email, to_email, subject, body_text, body_html):
+def send_elastic_email(to_email:str, body_html:str):
+    """
+    This function sends an email via Elastic email with the given information
+    """
     url = "https://api.elasticemail.com/v2/email/send"
     payload = {
-        "apikey": api_key,
-        "from": from_email,
+        "apikey": ELASTIC_EMAIL_API_KEY,
+        "from": FROM_EMAIL,
         "to": to_email,
-        "subject": subject,
-        "bodyText": body_text,
+        "subject": "Latest test result from github action",
+        "bodyText": "Checkout the latest test result from github action",
         "bodyHtml": body_html,
         "isTransactional": True
     }
-    response = requests.post(url, data=payload)
-    return response.status_code, response.json()
+    requests.post(url, data=payload, timeout=10)

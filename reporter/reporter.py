@@ -8,6 +8,9 @@ from lxml import etree
 from slack_sender.config import SLACK_TOKEN
 from slack_sender.sender import send_slack_message
 
+from email_service.send_email import send_elastic_email
+from email_service.email_template import format_email
+
 def parse_result(filepath:str) -> tuple[str, str, str]:
     """
     This function will take a filepath as input of robot result xml,
@@ -30,7 +33,12 @@ if __name__ == '__main__':
         raise ValueError("Wrong number of arguments, "
                          "expected 2 argument of report path and run path")
     res = parse_result(os.path.join(sys.argv[1], "output.xml"))
-    # ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-    # print(res)
-    CHANNEL_ID = 'C044SMHP44D'
+    # push to slack
+    CHANNEL_ID = "C044SMHP44D"
     send_slack_message(SLACK_TOKEN, CHANNEL_ID, res, sys.argv[2])
+    # push to email
+    # I'm using elastic email as the email service provider
+    # but the free trial seems only works with the email I used to setup the account
+    TO_EMAIL = "tim743244@gmail.com"
+    body_html = format_email(res[0],res[1],res[2], sys.argv[2])
+    send_elastic_email(TO_EMAIL, body_html)
