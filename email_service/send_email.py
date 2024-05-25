@@ -1,14 +1,15 @@
 import requests
 
-def send_mailgun_email(api_key, domain, from_email, to_email, subject, text_content, html_content):
-    url = f"https://api.mailgun.net/v3/{domain}/messages"
-    auth = ("api", api_key)
-    data = {
+def send_elastic_email(api_key, from_email, to_email, subject, body_text, body_html):
+    url = "https://api.elasticemail.com/v2/email/send"
+    payload = {
+        "apikey": api_key,
         "from": from_email,
         "to": to_email,
         "subject": subject,
-        "text": text_content,
-        "html": html_content,
+        "bodyText": body_text,
+        "bodyHtml": body_html,
+        "isTransactional": True
     }
-    response = requests.post(url, auth=auth, data=data)
+    response = requests.post(url, data=payload)
     return response.status_code, response.json()
