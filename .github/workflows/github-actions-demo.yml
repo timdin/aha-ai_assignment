@@ -33,7 +33,7 @@ jobs:
           echo "${{ secrets.CREDENTIALS_BASE64 }}" | base64 -d > ${ROBOTPATH}/credentials/credentials.json
           echo "${{ secrets.TOKEN_BASE64 }}" | base64 -d > ${ROBOTPATH}/credentials/token.json
       - name: Run tests
-        run: robot --variable mode:headless -i Login --outputdir ~/results --output 1.xml ${ROBOTPATH}/testcases
+        run: robot --variable mode:headless --outputdir ~/results --output 1.xml ${ROBOTPATH}/testcases
         continue-on-error: true
       - name: Rerun failed tests
         run: robot --variable mode:headless --rerunfailed ~/results/1.xml --outputdir ~/results --output 2.xml ${ROBOTPATH}/testcases
