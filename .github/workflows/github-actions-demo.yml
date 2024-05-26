@@ -55,4 +55,5 @@ jobs:
           path: ~/results
       - name: reporting
         run: |
+          ls ~/results
           python3 ${ROBOTPATH}/reporter/reporter.py ~/results ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
