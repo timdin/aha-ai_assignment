@@ -30,8 +30,8 @@ jobs:
       - name: Export credentials
         run: |
           mkdir ${ROBOTPATH}/credentials
-          printf "%s" "${{ secrets.CREDENTIALS }}" > ${ROBOTPATH}/credentials/credentials.json
-          printf "%s" "${{ secrets.TOKEN }}" > ${ROBOTPATH}/credentials/token.json
+          echo "${{ secrets.CREDENTIALS_BASE64 }}" | base64 -d > ${ROBOTPATH}/credentials/credentials.json
+          echo "${{ secrets.TOKEN_BASE64 }}" | base64 -d > ${ROBOTPATH}/credentials/token.json
       - name: Run tests
         run: robot --variable mode:headless -i Sign\ up --outputdir ~/results ${ROBOTPATH}/testcases
         continue-on-error: true
