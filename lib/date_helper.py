@@ -124,9 +124,9 @@ class date_helper: # pylint: disable=C0103
         year_and_month_data: March 2011
         """
         # debug information
-        print("*INFO* previous date: {self.date_to_use}")
-        print("*INFO* data for date: {date_data}")
-        print("*INFO* data for year and month: {year_and_month_data}")
+        print(f"*INFO* previous date: {self.date_to_use}")
+        print(f"*INFO* data for date: {date_data}")
+        print(f"*INFO* data for year and month: {year_and_month_data}")
         result_date = date_data.split("/")[0]
         result_month = year_and_month_data.split(" ")[0]
         result_month_int = self.month_to_int[result_month.capitalize()]
