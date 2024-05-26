@@ -33,8 +33,13 @@ jobs:
           echo "${{ secrets.CREDENTIALS_BASE64 }}" | base64 -d > ${ROBOTPATH}/credentials/credentials.json
           echo "${{ secrets.TOKEN_BASE64 }}" | base64 -d > ${ROBOTPATH}/credentials/token.json
       - name: Run tests
-        run: robot --variable mode:headless --outputdir ~/results ${ROBOTPATH}/testcases
+        run: robot --variable mode:headless --output 1.xml ${ROBOTPATH}/testcases
         continue-on-error: true
+      - name: Rerun failed tests
+        run: robot --variable mode:headless --rerunfailed 1.xml --output 2.xml ${ROBOTPATH}/testcases
+        continue-on-error: true
+      - name: Merge test results
+        run: rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml 1.xml 2.xml
       - name: upload artifacts
         uses: actions/upload-artifact@v4
         with:
