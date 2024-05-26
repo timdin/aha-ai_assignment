@@ -36,7 +36,8 @@ User set the selected date on the calendar
     Click Element    xpath://button[text()=${year}]
     # get direction for month selection
     ${direction}=     get direction    current=${display year and month}
-    
+    # set selenium speed slightly slower to make the following key press work
+    ${original speed} =  Set Selenium Speed    0.3 seconds
     # loop and select corresponding month, until direction is "just"
     WHILE    $direction != "just"
     Wait Until Element Is Visible    xpath://button[@title="${direction}"]
@@ -50,6 +51,7 @@ User set the selected date on the calendar
     Click Element    xpath://div/div[${weekday}]/div/button[text()=${date}]
     # click ok button
     Click Element    xpath://button[@type="button" and text()=${OK}]
+    Set Selenium Speed    ${original speed}
 
 User click save on profile page
     Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()=${SAVE}]
@@ -106,6 +108,7 @@ User set value on selection field "${field}"
     ${selection} =   Random A Number    ${1}    ${count}
     # store the value of the randomly picked element
     ${value} =    Get Text    xpath://ul/li[${selection}]
+    Scroll Element Into View    xpath://ul/li[${selection}]
     Click Element    xpath://ul/li[${selection}]
     Set Selenium Speed    ${original speed}
     Set Value    ${placeholder}    ${value}
