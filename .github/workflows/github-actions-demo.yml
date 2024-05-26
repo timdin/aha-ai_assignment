@@ -41,6 +41,10 @@ jobs:
       - name: Merge test results
         continue-on-error: true  
         run: | 
+          echo "reports"
+          ls ~/results/*.png
+          echo "pwd"
+          ls *.png
           rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml 1.xml 2.xml
       # - name: test results
       #   run: ls ${ROBOTPATH}
