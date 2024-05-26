@@ -12,3 +12,5 @@ __pycache__
 test.robot
 # for credentials
 credentials/
+# for DS_Store
+.DS_Store

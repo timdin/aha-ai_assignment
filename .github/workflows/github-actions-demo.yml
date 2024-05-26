@@ -38,10 +38,13 @@ jobs:
       - name: Rerun failed tests
         run: robot --variable mode:headless --rerunfailed ~/results/1.xml --outputdir ~/results --output 2.xml ${ROBOTPATH}/testcases
         continue-on-error: true
+      - name: Rerun rerun failed tests
+        run: robot --variable mode:headless --rerunfailed ~/results/2.xml --outputdir ~/results --output 3.xml ${ROBOTPATH}/testcases
+        continue-on-error: true
       - name: Merge test results
         continue-on-error: true  
         run: | 
-          rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml ~/results/1.xml ~/results/2.xml
+          rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml ~/results/1.xml ~/results/2.xml ~/results/3.xml
       # - name: test results
       #   run: ls ${ROBOTPATH}
       - name: upload artifacts
