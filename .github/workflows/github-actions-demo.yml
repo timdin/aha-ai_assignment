@@ -30,11 +30,20 @@ jobs:
       - name: Export credentials
         run: |
           mkdir ${ROBOTPATH}/credentials
-          echo ${{ secrets.CREDENTIALS }} > ${ROBOTPATH}/credentials/credentials.json
-          echo ${{ secrets.TOKEN }} > ${ROBOTPATH}/credentials/token.json
+          echo "${{ secrets.CREDENTIALS_BASE64 }}" | base64 -d > ${ROBOTPATH}/credentials/credentials.json
+          echo "${{ secrets.TOKEN_BASE64 }}" | base64 -d > ${ROBOTPATH}/credentials/token.json
       - name: Run tests
-        run: robot --variable mode:headless --outputdir ~/results ${ROBOTPATH}/testcases
+        run: robot --variable mode:headless --outputdir ~/results --output 1.xml ${ROBOTPATH}/testcases
         continue-on-error: true
+      - name: Rerun failed tests
+        run: robot --variable mode:headless --rerunfailed ~/results/1.xml --outputdir ~/results --output 2.xml ${ROBOTPATH}/testcases
+        continue-on-error: true
+      - name: Merge test results
+        continue-on-error: true  
+        run: | 
+          rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml ~/results/1.xml ~/results/2.xml
+      # - name: test results
+      #   run: ls ${ROBOTPATH}
       - name: upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -42,4 +51,5 @@ jobs:
           path: ~/results
       - name: reporting
         run: |
+          ls ~/results
           python3 ${ROBOTPATH}/reporter/reporter.py ~/results ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
