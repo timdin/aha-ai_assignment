@@ -13,7 +13,11 @@ Also, the implementation supports sending email and slack notifications once the
 
 See screenshots here
 
+Email:
+
 ![image](https://github.com/timdin/aha-ai_assignment/blob/main/notification_screenshots/email_notification.png)
+
+Slack:
 
 ![image](https://github.com/timdin/aha-ai_assignment/blob/main/notification_screenshots/slack_notification.png)
 
