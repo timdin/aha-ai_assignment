@@ -40,8 +40,8 @@ jobs:
         continue-on-error: true
       - name: check execution artifacts
         run: |
-          ls .
-          ls ${ROBOTPATH}/
+          ls *.png
+          ls ${ROBOTPATH}/*.png
       - name: Merge test results
         continue-on-error: true  
         run: | 
