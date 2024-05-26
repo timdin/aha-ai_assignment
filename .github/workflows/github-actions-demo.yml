@@ -39,8 +39,11 @@ jobs:
         run: robot --variable mode:headless --rerunfailed 1.xml --output 2.xml ${ROBOTPATH}/testcases
         continue-on-error: true
       - name: Merge test results
-        run: rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml 1.xml 2.xml
-        continue-on-error: true
+        continue-on-error: true  
+        run: | 
+          rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml 1.xml 2.xml
+          cp *.png ~/results
+        
       - name: upload artifacts
         uses: actions/upload-artifact@v4
         with:
