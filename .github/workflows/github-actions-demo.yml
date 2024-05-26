@@ -38,6 +38,10 @@ jobs:
       - name: Rerun failed tests
         run: robot --variable mode:headless --rerunfailed 1.xml --output 2.xml ${ROBOTPATH}/testcases
         continue-on-error: true
+      - name: check execution artifacts
+        run: |
+          ls .
+          ls ${ROBOTPATH}/
       - name: Merge test results
         continue-on-error: true  
         run: | 
