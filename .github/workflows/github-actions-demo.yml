@@ -36,7 +36,7 @@ jobs:
         run: robot --variable mode:headless -i Login --outputdir ~/results --output 1.xml ${ROBOTPATH}/testcases
         continue-on-error: true
       - name: Rerun failed tests
-        run: robot --variable mode:headless --rerunfailed 1.xml --outputdir ~/results --output 2.xml ${ROBOTPATH}/testcases
+        run: robot --variable mode:headless --rerunfailed ~/results/1.xml --outputdir ~/results --output 2.xml ${ROBOTPATH}/testcases
         continue-on-error: true
       - name: Merge test results
         continue-on-error: true  
