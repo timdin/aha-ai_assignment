@@ -11,6 +11,12 @@ The project contains the basic tests for the following features:
 
 Also, the implementation supports sending email and slack notifications once the github action pipeline is done.
 
+See screenshots here
+
+![image](https://github.com/timdin/aha-ai_assignment/blob/main/notification_screenshots/email_notification.png)
+
+![image](https://github.com/timdin/aha-ai_assignment/blob/main/notification_screenshots/slack_notification.png)
+
 ## Repository breakdown
 
 Here is a high-level summary of each folder in the repository
