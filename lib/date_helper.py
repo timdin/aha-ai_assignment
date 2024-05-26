@@ -135,7 +135,7 @@ class date_helper: # pylint: disable=C0103
             f"{result_year}-{result_month_int}-{result_date}", "%Y-%m-%d")
         if self.date_to_use == date_object.date():
             return
-        raise AssertionError("""Validation failed: Actual date: {date_object.date()},
+        raise AssertionError(f"""Validation failed: Actual date: {date_object.date()},
                               expected date: {self.date_to_use}""")
 @not_keyword
 def is_leap_year(year):
