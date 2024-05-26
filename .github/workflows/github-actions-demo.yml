@@ -43,7 +43,8 @@ jobs:
         run: | 
           rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml 1.xml 2.xml
           cp *.png ~/results
-        
+      - name: test results
+        run: ls ${ROBOTPATH}
       - name: upload artifacts
         uses: actions/upload-artifact@v4
         with:
