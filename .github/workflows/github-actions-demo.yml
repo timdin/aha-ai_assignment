@@ -46,7 +46,7 @@ jobs:
         continue-on-error: true  
         run: | 
           rebot --log ~/results/log.html --report ~/results/report.html --output ~/results/output.xml 1.xml 2.xml
-          cp ${ROBOTPATH}/*.png ~/results
+          cp "${ROBOTPATH}/*.png" ~/results
       # - name: test results
       #   run: ls ${ROBOTPATH}
       - name: upload artifacts
