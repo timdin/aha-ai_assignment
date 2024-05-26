@@ -9,8 +9,10 @@ Resource   %{ROBOTPATH}/consts/lang_en.robot
 
 *** Keywords ***
 User Goto profile page
-    Wait Until Element Is Visible  xpath://div[@aria-label="Profile"]
-    Click Element   xpath://div[@aria-label="Profile"]
+    # Wait Until Element Is Visible  xpath://div[@aria-label="Profile"]
+    # Click Element   xpath://div[@aria-label="Profile"]
+    # Since the element for profile page does not have a solid xpath available, use direct url access instead
+    Go To    https://app.earnaha.com/profile/account
 
 User click edit on profile page
     Wait Until Element Is Visible    xpath://div[@class="em-button-base" and text()=${EDIT PROFILE}]
