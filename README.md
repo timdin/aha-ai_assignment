@@ -29,6 +29,8 @@ Here is a high-level summary of each folder in the repository
 
     contains the information for the test account, I could use github action secrets for them but it would take away the availability of executing locally
 
+    it also contains the element locating materials, as the implementation uses a lot of locating method like placeholder or text, I took an approach similar to i18n definition.
+
 * credentials:
 
     contains the token for the email accessing module, it's currently not available in the repo since it was runtime exported from the github action secrets, kindly reach out to me if you want to set it up locally
